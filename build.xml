@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+<project name="deas" default="all">
+	<target name="init" description="initialize the project">
+		<tstamp />
+		<property name="class" value="./classes" />
+		<property name="source" value="./src" />
+		<property name="release" value="./release" />
+		<property name="lib" value="./lib" />
+        <property name="jar_name" value="major-utility.jar" />
+        <property name="jar_sources_name" value="major-utility-sources.jar" />
+	</target>
+	<target name="clean" depends="init" description="clean the project">
+		<delete dir="${class}" />
+        <delete dir="${release}" />
+        <mkdir dir="${class}" />
+        <mkdir dir="${release}" />
+	</target>
+	<target name="compile" depends="clean" description="compile the java file">
+		<javac srcdir="${source}" destdir="${class}" includeAntRuntime="true">
+			<classpath>
+				<fileset dir="${lib}">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<copy todir="${class}">
+			<fileset dir="${source}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="package" depends="compile" description="package">
+		<jar destfile="${release}/${jar_name}" basedir="${class}">
+            <include name="com/major/util/**" />
+		</jar>
+        <jar destfile="${release}/${jar_sources_name}" basedir="${source}">
+            <include name="com/major/util/**" />
+        </jar>
+	</target>
+    <target name="clean2" depends="package" description="clean the project">
+        <delete dir="${class}" />
+    </target>
+	<target name="all" depends="clean2" description="perform all targets" />
+</project>
