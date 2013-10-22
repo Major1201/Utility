@@ -1,5 +1,7 @@
 package com.major.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -59,7 +61,7 @@ public class TimeUtil {
         if (date == null)
             throw new IllegalArgumentException("null date");
 
-        if (StringUtil.isEmpty(format))
+        if (StringUtils.isEmpty(format))
             format = DEFAULT_DATE_FORMAT;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat(format);
@@ -77,7 +79,7 @@ public class TimeUtil {
      * @return Date
      */
     public static Date convertStringToDate(String date, String format) {
-        if (StringUtil.isEmpty(date))
+        if (StringUtils.isEmpty(date))
             throw new IllegalArgumentException("date is empty.");
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
@@ -95,7 +97,7 @@ public class TimeUtil {
      * @return Date
      */
     public static Date convertStringToDate(String date) {
-        if (StringUtil.isEmpty(date))
+        if (StringUtils.isEmpty(date))
             throw new IllegalArgumentException("date is empty.");
 
         switch (date.length()) {

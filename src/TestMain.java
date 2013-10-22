@@ -1,4 +1,7 @@
+import com.major.util.EncryptUtil;
 import com.major.util.UnitUtil;
+
+import java.io.File;
 
 /**
  * User: Minjie
@@ -7,7 +10,6 @@ import com.major.util.UnitUtil;
  */
 public class TestMain {
     public static void main(String[] args) {
-        System.out.println(UnitUtil.lengthConverter(1, UnitUtil.Length.FEET, UnitUtil.Length.INCH));
-
+        EncryptUtil.decodeBase64(new File("d:\\1.jpg"), new File("d:\\3.jpg"));
     }
 }

@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bsh" level="project" />
     <orderEntry type="library" name="pinyin4j" level="project" />
+    <orderEntry type="library" name="commons" level="project" />
   </component>
 </module>
 

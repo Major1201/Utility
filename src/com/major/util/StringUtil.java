@@ -25,15 +25,6 @@ public class StringUtil {
     public static final String REG_IP = "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])[.]){3}([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])";
 
     /**
-     * It no longer trims the String.
-     * @param str the String to check, may be null
-     * @return if the String is empty or null
-     */
-    public static boolean isEmpty(String str) {
-        return str == null || str.length() == 0;
-    }
-
-    /**
      * Convert an object to string safely.
      * @param o object to convert
      * @param dv default value
@@ -45,37 +36,6 @@ public class StringUtil {
             r = String.valueOf(o);
         }
         return r;
-    }
-
-    /**
-     * Joining an array using specified delimiter.
-     * @param array array to join
-     * @param delimiter delimiter
-     * @param startDeli enable delimiter at start or not, default is false
-     * @param endDeli enable delimiter at end or not, default is false
-     * @return String
-     */
-    public static String join(Object[] array, String delimiter, boolean startDeli, boolean endDeli) {
-        if (array == null || array.length <= 0)
-            return "";
-        String deli = (delimiter == null) ? "" : delimiter;
-        StringBuffer buffer = startDeli ? new StringBuffer(deli) : new StringBuffer();
-        for (Object o : array) {
-            buffer.append(o.toString());
-            buffer.append(deli);
-        }
-        if (!endDeli)
-            buffer.delete(buffer.length() - deli.length(), buffer.length());
-        return buffer.toString();
-    }
-    public static String join(Object[] array, String delimiter) {
-        return join(array, delimiter, false, false);
-    }
-    public static String join(List list, String delimiter, boolean startDeli, boolean endDeli) {
-        return join(list.toArray(), delimiter, startDeli, endDeli);
-    }
-    public static String join(List list, String delimiter) {
-        return join(list.toArray(), delimiter);
     }
 
     /**
@@ -104,22 +64,6 @@ public class StringUtil {
             return arrayToList(s);
         }
         return null;
-    }
-
-    /**
-     * Get subString from one to another.
-     * e.g. getBetween("hello<world@mysite.com>", "<", ">") -> "world@mysite.com"
-     * @param original string to cut
-     * @param start start string
-     * @param end end string
-     * @return String
-     */
-    public static String getBetween(String original, String start, String end) {
-        Matcher matcher = Pattern.compile(start + ".*" + end).matcher(original);
-        if (matcher.matches())
-            return original.substring(matcher.regionStart() + start.length(), matcher.regionEnd() - end.length());
-        else
-            return null;
     }
 
     /**
