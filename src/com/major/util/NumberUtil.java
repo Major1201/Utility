@@ -86,7 +86,9 @@ public class NumberUtil {
             try{
                 r = new Integer(String.valueOf(o));
             }
-            catch (Exception ex){}
+            catch (Exception ex){
+                //ignore
+            }
         }
         return r;
     }
@@ -103,7 +105,9 @@ public class NumberUtil {
             try{
                 r = new Float(String.valueOf(o));
             }
-            catch(Exception ex){}
+            catch(Exception ex){
+                //ignore
+            }
         }
         return r;
     }
@@ -120,7 +124,9 @@ public class NumberUtil {
             try{
                 r = new Float(String.valueOf(o));
             }
-            catch(Exception ex){}
+            catch(Exception ex){
+                //ignore
+            }
         }
         r = new BigDecimal(r).setScale(round, BigDecimal.ROUND_HALF_UP).floatValue();
         return r;
@@ -138,7 +144,9 @@ public class NumberUtil {
             try{
                 r = new Double(String.valueOf(o));
             }
-            catch(Exception ex){}
+            catch(Exception ex){
+                //ignore
+            }
         }
         return r;
     }
@@ -155,7 +163,9 @@ public class NumberUtil {
             try{
                 r = new Double(String.valueOf(o));
             }
-            catch(Exception ex){}
+            catch(Exception ex){
+                //ignore
+            }
         }
         r = new BigDecimal(r).setScale(round, BigDecimal.ROUND_HALF_UP).doubleValue();
         return r;

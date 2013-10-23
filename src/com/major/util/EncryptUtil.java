@@ -4,7 +4,7 @@ import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingExcepti
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Base64InputStream;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +46,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -72,7 +72,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -98,7 +98,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -124,7 +124,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -150,7 +150,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -176,7 +176,7 @@ public class EncryptUtil {
         } catch (IOException e) {
             return null;
         } finally {
-            FileUtil.closeIgnoreException(fis);
+            IOUtils.closeQuietly(fis);
         }
     }
 
@@ -211,9 +211,9 @@ public class EncryptUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            FileUtil.closeIgnoreException(fis);
-            FileUtil.closeIgnoreException(bis);
-            FileUtil.closeIgnoreException(fos);
+            IOUtils.closeQuietly(fis);
+            IOUtils.closeQuietly(bis);
+            IOUtils.closeQuietly(fos);
         }
     }
 
@@ -248,8 +248,8 @@ public class EncryptUtil {
         } catch (IOException | Base64DecodingException e) {
             e.printStackTrace();
         }finally {
-            FileUtil.closeIgnoreException(fis);
-            FileUtil.closeIgnoreException(fos);
+            IOUtils.closeQuietly(fis);
+            IOUtils.closeQuietly(fos);
         }
     }
 }
