@@ -7,6 +7,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * User: Minjie
@@ -15,14 +19,19 @@ import java.io.IOException;
  */
 public class TestMain {
     public static void main(String[] args) {
-//        EncryptUtil.decodeBase64(new File("d:\\1.jpg"), new File("d:\\3.jpg"));
-        File files[] = new File[2];
-        files[0] = new File("d:\\IMG_0043.JPG");
-        files[1] = new File("d:\\IMG_0545.JPG");
-        CompressUtil.cpio(files, new File("d:\\1.cpio"));
+        List<File> files = new ArrayList<>();
+//        files.add(new File("d:\\IMG_0043.JPG"));
+//        files.add(new File("d:\\IMG_0545.JPG"));
+
+//        Map<File, String> map = new HashMap<>();
+//        map.put(new File("d:\\IMG_0043.JPG"), "?");
+//        map.put(new File("d:\\IMG_0545.JPG"), "?");
+//        CompressUtil.zip(map, new File("d:\\1.zip"));
+        files.add(new File("d:\\新建文件夹"));
+        CompressUtil.zip(new File("d:\\新建文件夹"), new File("d:\\1.zip"));
 
         try {
-            CompressUtil.unCpio(new File("d:\\1.cpio"), new File("d:\\aa"));
+            CompressUtil.unzip(new File("d:\\1.zip"), new File("d:\\aa"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
