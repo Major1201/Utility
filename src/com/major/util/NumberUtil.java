@@ -447,9 +447,12 @@ public class NumberUtil {
     public static <T extends Comparable> T[] sort(T[] c, boolean asc) {
         if (c == null)
             throw new IllegalArgumentException("null array");
-        List<T> list = Arrays.asList(c);
-        List<T> sortedList = sort(list, asc);
-        return (T[]) sortedList.toArray();
+        T[] _c = c.clone();
+        if (asc)
+            Arrays.sort(_c);
+        else
+            Arrays.sort(_c, Collections.reverseOrder());
+        return _c;
     }
     public static <T extends Comparable> T[] sort(T[] c) {
         return sort(c, true);
