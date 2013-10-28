@@ -1,5 +1,6 @@
 package com.major.util;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,6 +63,32 @@ public class StringUtil {
             return arrayToList(s);
         }
         return null;
+    }
+
+    /**
+     * Get string length in charset:GBK
+     * e.g. lengthInBytes("abc住") -> 5;
+     * @param string string to get length
+     * @return length, on null returns 0
+     */
+    public static int lengthInBytes(String string) {
+        if (string == null)
+            return 0;
+        else
+            return string.getBytes(Charset.forName("GBK")).length;
+    }
+
+    /**
+     * Get string length in charset:UTF-8
+     * e.g. lengthInBytes("abc住") -> 6;
+     * @param string string to get length
+     * @return length, on null returns 0
+     */
+    public static int lengthInUTF8(String string) {
+        if (string == null)
+            return 0;
+        else
+            return string.getBytes(Charset.forName("UTF-8")).length;
     }
 
     /**
