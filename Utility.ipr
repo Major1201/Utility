@@ -333,6 +333,14 @@
       <jarDirectory url="file://$PROJECT_DIR$/lib/commons" recursive="false" />
       <jarDirectory url="file://$PROJECT_DIR$/lib/commons" recursive="false" type="SOURCES" />
     </library>
+    <library name="javamail">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/javamail" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/javamail" recursive="false" />
+    </library>
     <library name="pinyin4j">
       <CLASSES>
         <root url="file://$PROJECT_DIR$/lib/pinyin4j" />

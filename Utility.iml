@@ -10,6 +10,7 @@
     <orderEntry type="library" name="bsh" level="project" />
     <orderEntry type="library" name="pinyin4j" level="project" />
     <orderEntry type="library" name="commons" level="project" />
+    <orderEntry type="library" name="javamail" level="project" />
   </component>
 </module>
 
