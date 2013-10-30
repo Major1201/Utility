@@ -1,8 +1,6 @@
 package com.major.util;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -38,20 +36,6 @@ public class StringUtil {
     }
 
     /**
-     * Convert a string array to a list
-     * @param array String[]
-     * @return List<String>
-     */
-    public static List<String> arrayToList(String array[]) {
-        if (array != null) {
-            List<String> list = new ArrayList<>();
-            list.addAll(Arrays.asList(array));
-            return list;
-        }
-        return null;
-    }
-
-    /**
      * Convert a string to a list using the delimiter.
      * @param str original string
      * @param delimiter delimiter
@@ -60,7 +44,7 @@ public class StringUtil {
     public static List<String> stringToList(String str, String delimiter) {
         if (str != null && delimiter != null) {
             String[] s = str.split(delimiter);
-            return arrayToList(s);
+            return CollectionsUtil.arrayToList(s);
         }
         return null;
     }
