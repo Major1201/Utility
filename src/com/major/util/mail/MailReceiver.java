@@ -1,11 +1,14 @@
 package com.major.util.mail;
 
+import org.apache.commons.io.IOUtils;
+
 import javax.mail.*;
 import javax.mail.internet.ContentType;
 import javax.mail.internet.MimeUtility;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -39,7 +42,7 @@ public class MailReceiver {
      * @throws MessagingException
      */
     public void receive(final SearchTerm condition, final MailExecutor executor) throws MessagingException {
-        FutureTask<String> futureTask = new FutureTask<String>(new Callable<String>() {
+        FutureTask<String> futureTask = new FutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
                 Thread.sleep(0);
@@ -64,7 +67,7 @@ public class MailReceiver {
         Store store = null;
         Folder folder = null;
         try {
-            store = session.getStore("imap"); //用pop3标记都不生效，这是个疑问。
+            store = session.getStore("imap"); //or pop3
             store.connect(pop3Server, userName, password);
             //get folder
             folder = store.getFolder("INBOX");
@@ -80,6 +83,11 @@ public class MailReceiver {
                     MailObject mailObject = new MailObject();
                     processMessage(message, mailObject);
                     executor.processMail(mailObject);
+                    //close input streams
+                    Set<String> attachmentSet = mailObject.attachments.keySet();
+                    for (String key : attachmentSet) {
+                        IOUtils.closeQuietly(mailObject.attachments.get(key));
+                    }
                 }
         } finally {
             if (folder != null)
@@ -104,13 +112,13 @@ public class MailReceiver {
      */
     private void processMessage(Message message, MailObject mailObject) {
         try {
-            message.setFlag(Flags.Flag.SEEN, true); //设置为已读
+            message.setFlag(Flags.Flag.SEEN, true); //set seen flag
 
             {
                 mailObject.receiveTime = message.getSentDate();
                 mailObject.subject = MimeUtility.decodeText(message.getSubject());
                 mailObject.from = MimeUtility.decodeText(message.getFrom()[0].toString());
-                //解析正文
+                //analyze content
                 ContentType contentType = new ContentType(message.getContentType());
                 if ("TEXT".equals(contentType.getPrimaryType().toUpperCase())) {
                     mailObject.content = String.valueOf(message.getContent());
@@ -138,7 +146,7 @@ public class MailReceiver {
      */
     private String processPart(BodyPart part, MailObject mailObject) throws MessagingException, IOException {
         String disposition = part.getDisposition();
-        if (disposition != null && (disposition.equals(Part.ATTACHMENT) || disposition.equals(Part.INLINE))) { //inline不一定要
+        if (disposition != null && (disposition.equals(Part.ATTACHMENT) || disposition.equals(Part.INLINE))) {
             //if attachment
             mailObject.attachments.put(MimeUtility.decodeText(part.getFileName()), part.getInputStream());
             return "";

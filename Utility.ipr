@@ -341,6 +341,17 @@
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/lib/javamail" recursive="false" />
     </library>
+    <library name="log4j2">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/lib/log4j2" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="file://$PROJECT_DIR$/lib/log4j2" />
+      </SOURCES>
+      <jarDirectory url="file://$PROJECT_DIR$/lib/log4j2" recursive="false" />
+      <jarDirectory url="file://$PROJECT_DIR$/lib/log4j2" recursive="false" type="SOURCES" />
+    </library>
     <library name="pinyin4j">
       <CLASSES>
         <root url="file://$PROJECT_DIR$/lib/pinyin4j" />

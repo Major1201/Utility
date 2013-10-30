@@ -11,6 +11,7 @@
     <orderEntry type="library" name="pinyin4j" level="project" />
     <orderEntry type="library" name="commons" level="project" />
     <orderEntry type="library" name="javamail" level="project" />
+    <orderEntry type="library" name="log4j2" level="project" />
   </component>
 </module>
 

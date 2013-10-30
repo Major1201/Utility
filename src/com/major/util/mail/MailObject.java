@@ -15,4 +15,25 @@ public class MailObject {
     String subject;
     String content;
     Map<String, InputStream> attachments = new HashMap<>();
+
+    public Map<String, InputStream> getAttachments() {
+        return attachments;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public Date getReceiveTime() {
+        return receiveTime;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
 }
