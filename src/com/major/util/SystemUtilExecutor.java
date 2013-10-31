@@ -1,7 +1,7 @@
 package com.major.util;
 
 /**
- * User: 朱敏捷
+ * User: Minjie
  * Date: 13-10-29
  * Time: 下午2:40
  */
