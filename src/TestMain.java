@@ -1,9 +1,12 @@
+import com.major.util.NetUtil;
+import com.major.util.ObjectUtil;
 import com.major.util.mail.*;
 import org.apache.commons.mail.EmailException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +19,8 @@ public class TestMain {
 
     private static Logger logger = LogManager.getLogger(TestMain.class);
 
-    public static boolean judge(){
-        logger.entry();
-        logger.debug("In doIt().");
-        logger.info("In doIt()..");
-        logger.warn("In doIt()...");
-        return logger.exit(true);
-    }
-
     public static void main(String[] args) {
-        logger.trace("begin...");
-        if (judge()) {
-            logger.error("Do it again!");
-            logger.fatal("Do it again!!");
-        }
-        logger.trace("end!");
+        System.out.println(NetUtil.download("http://www.baidu.com/img/bdlogo.gif", new File("d:\\1.gif")));
+//        System.out.println(NetUtil.download("http://static.blog.csdn.net/images/medal/holdon_s2.gif", new File("d:\\2.gif")));
     }
 }
