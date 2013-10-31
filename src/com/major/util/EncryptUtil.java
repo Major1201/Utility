@@ -5,6 +5,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Base64InputStream;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +20,8 @@ import java.io.IOException;
  */
 @SuppressWarnings("UnusedDeclaration")
 public class EncryptUtil {
+
+    private static final Logger LOGGER = LogManager.getLogger(EncryptUtil.class);
 
     /**
      * Don't let anyone instantiate this class.
@@ -209,7 +213,7 @@ public class EncryptUtil {
             fos = new FileOutputStream(destination);
             IOUtils.copy(bis, fos);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("encode base64 error", e);
         } finally {
             IOUtils.closeQuietly(fis);
             IOUtils.closeQuietly(bis);
@@ -246,7 +250,7 @@ public class EncryptUtil {
             fos = new FileOutputStream(destination);
             com.sun.org.apache.xml.internal.security.utils.Base64.decode(fis, fos);
         } catch (IOException | Base64DecodingException e) {
-            e.printStackTrace();
+            LOGGER.error("decode base64 error", e);
         }finally {
             IOUtils.closeQuietly(fis);
             IOUtils.closeQuietly(fos);

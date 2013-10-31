@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="OFF">
     <properties>
-        <property name="filename">/test.log</property>
+        <property name="filename">log/runtime.log</property>
     </properties>
 
     <appenders>
-        <File name="MyFile" fileName="${filename}">
+        <File name="File" fileName="${filename}">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %-5level - [%logger{1} - %M] %msg%n</Pattern>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%logger{1}:%L][%M][%-5level] - %msg%n%throwable</Pattern>
             </PatternLayout>
         </File>
-        <Console name="MyConsole" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%logger{1}:%L][%M][%-5level] - %msg%n%throwable</Pattern>
             </PatternLayout>
         </Console>
     </appenders>
 
     <loggers>
-        <root level="trace">
-            <appender-ref ref="MyConsole" />
+        <root level="trace" additivity="true">
+            <appender-ref ref="Console" />
+            <appender-ref ref="File"/>
         </root>
     </loggers>
 </configuration>

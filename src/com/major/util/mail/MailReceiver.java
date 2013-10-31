@@ -1,6 +1,8 @@
 package com.major.util.mail;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.mail.*;
 import javax.mail.internet.ContentType;
@@ -17,8 +19,11 @@ import java.util.concurrent.FutureTask;
  * Date: 13-10-29
  * Time: 下午4:06
  */
-//@SuppressWarnings("UnusedDeclaration")
+@SuppressWarnings("UnusedDeclaration")
 public class MailReceiver {
+
+    private static final Logger LOGGER = LogManager.getLogger(MailReceiver.class);
+
     private String userName = "";
     private String password = "";
     private String pop3Server = "";
@@ -39,9 +44,8 @@ public class MailReceiver {
      * Create a new thread and receive mails that is under specified conditions.
      * @param condition condition
      * @param executor do what you want with each mail.
-     * @throws MessagingException
      */
-    public void receive(final SearchTerm condition, final MailExecutor executor) throws MessagingException {
+    public void receive(final SearchTerm condition, final MailExecutor executor) {
         FutureTask<String> futureTask = new FutureTask<>(new Callable<String>() {
             @Override
             public String call() throws Exception {
@@ -57,9 +61,8 @@ public class MailReceiver {
      * Receive mails that is under specified conditions.
      * @param condition condition
      * @param executor do what you want with each mail.
-     * @throws MessagingException
      */
-    public void receiveAndWait(SearchTerm condition, MailExecutor executor) throws MessagingException {
+    public void receiveAndWait(SearchTerm condition, MailExecutor executor) {
         Properties properties = new Properties();
         properties.setProperty("mail.store.protocol", "imap");
         properties.setProperty("mail.pop3.host", pop3Server); //pop3 server
@@ -89,6 +92,10 @@ public class MailReceiver {
                         IOUtils.closeQuietly(mailObject.attachments.get(key));
                     }
                 }
+        } catch (NoSuchProviderException e) {
+            LOGGER.error("Wrong POP3 server name.", e);
+        } catch (MessagingException e) {
+            LOGGER.error("Mail connection error.", e);
         } finally {
             if (folder != null)
                 try {
@@ -132,9 +139,9 @@ public class MailReceiver {
                 }
             }
         } catch (MessagingException e) {
-            e.printStackTrace();
+            LOGGER.error("message.getSomething error.", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("message/part.getContent error.", e);
         }
     }
 

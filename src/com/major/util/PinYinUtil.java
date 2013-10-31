@@ -3,6 +3,8 @@ package com.major.util;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.*;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * User: Minjie
@@ -11,6 +13,9 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  */
 @SuppressWarnings("UnusedDeclaration")
 public class PinYinUtil {
+
+    private static final Logger LOGGER = LogManager.getLogger(PinYinUtil.class);
+
     /**
      * Get full Pinyin with tone
      * e.g. getFullPinyinWithTone("获取拼音") -> huò qŭ pīn yīn
@@ -56,8 +61,8 @@ public class PinYinUtil {
                     str.append(PinyinHelper.toHanyuPinyinStringArray(point, format)[0]).append(" ");
                 else
                     str.append(point);
-            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
-                badHanyuPinyinOutputFormatCombination.printStackTrace();
+            } catch (BadHanyuPinyinOutputFormatCombination e) {
+                LOGGER.error("Error to get pinyin", e);
             }
         }
         return str.toString().trim();
@@ -85,8 +90,8 @@ public class PinYinUtil {
                     str.append(PinyinHelper.toHanyuPinyinStringArray(point, format)[0].charAt(0));
                 else
                     str.append(point);
-            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
-                badHanyuPinyinOutputFormatCombination.printStackTrace();
+            } catch (BadHanyuPinyinOutputFormatCombination e) {
+                LOGGER.error("Error to get pinyin", e);
             }
         }
         return str.toString();
