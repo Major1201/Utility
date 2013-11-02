@@ -127,9 +127,9 @@ public class MailReceiver {
                 mailObject.from = MimeUtility.decodeText(message.getFrom()[0].toString());
                 //analyze content
                 ContentType contentType = new ContentType(message.getContentType());
-                if ("TEXT".equals(contentType.getPrimaryType().toUpperCase())) {
+                if ("TEXT".equalsIgnoreCase(contentType.getPrimaryType())) {
                     mailObject.content = String.valueOf(message.getContent());
-                } else if ("MULTIPART".equals(contentType.getPrimaryType().toUpperCase())) {
+                } else if ("MULTIPART".equalsIgnoreCase(contentType.getPrimaryType())) {
                     Multipart multipart = (Multipart) message.getContent();
                     StringBuilder content = new StringBuilder();
                     for (int i = 0; i < multipart.getCount(); i++) {
@@ -159,17 +159,17 @@ public class MailReceiver {
             return "";
         } else if (disposition == null) {
             ContentType partContentType = new ContentType(part.getContentType());
-            if ("TEXT".equals(partContentType.getPrimaryType().toUpperCase())) {
-                if ("ALTERNATIVE".equals(new ContentType(part.getParent().getContentType()).getSubType().toUpperCase()))
+            if ("TEXT".equalsIgnoreCase(partContentType.getPrimaryType())) {
+                if ("ALTERNATIVE".equalsIgnoreCase(new ContentType(part.getParent().getContentType()).getSubType()))
                     if ("PLAIN".equals(partContentType.getSubType().toUpperCase()))
                         return String.valueOf(part.getContent());
-                    else if ("HTML".equals(partContentType.getSubType().toUpperCase()))
+                    else if ("HTML".equalsIgnoreCase(partContentType.getSubType()))
                         return "";
                     else
                         return "";
                 else
                     return String.valueOf(part.getContent());
-            } else if ("MULTIPART".equals(partContentType.getPrimaryType().toUpperCase())) {
+            } else if ("MULTIPART".equalsIgnoreCase(partContentType.getPrimaryType())) {
                 Multipart multipart = (Multipart) part.getContent();
                 StringBuilder content = new StringBuilder();
                 for (int i = 0; i < multipart.getCount(); i++) {
