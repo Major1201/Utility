@@ -1,4 +1,5 @@
-import com.major.util.TimeZoneUtil;
+import com.major.commons.util.PinYinUtil;
+import com.major.commons.util.TimeZoneUtil;
 
 import java.util.Date;
 import java.util.TimeZone;
@@ -11,5 +12,6 @@ import java.util.TimeZone;
 public class TestMain {
     public static void main(String[] args) {
         System.out.println(TimeZoneUtil.getTimeZoneDate(new Date(), TimeZone.getDefault(), TimeZoneUtil.Australia_Sydney));
+        System.out.println(PinYinUtil.getFullPinyinWithTone("嬲嫐娚"));
     }
 }

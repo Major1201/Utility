@@ -1,4 +1,4 @@
-package com.major.util.mail;
+package com.major.commons.util.mail;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;

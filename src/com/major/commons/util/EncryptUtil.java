@@ -1,4 +1,4 @@
-package com.major.util;
+package com.major.commons.util;
 
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
 import org.apache.commons.codec.binary.Base64;

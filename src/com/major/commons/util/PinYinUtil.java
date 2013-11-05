@@ -1,4 +1,4 @@
-package com.major.util;
+package com.major.commons.util;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.*;

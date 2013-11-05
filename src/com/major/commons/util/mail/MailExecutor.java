@@ -1,4 +1,4 @@
-package com.major.util.mail;
+package com.major.commons.util.mail;
 
 /**
  * User: Minjie

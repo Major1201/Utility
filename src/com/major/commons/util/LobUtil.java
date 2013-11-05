@@ -1,4 +1,4 @@
-package com.major.util;
+package com.major.commons.util;
 
 import java.io.IOException;
 import java.io.Reader;

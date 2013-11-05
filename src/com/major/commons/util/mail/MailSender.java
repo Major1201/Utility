@@ -1,4 +1,4 @@
-package com.major.util.mail;
+package com.major.commons.util.mail;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;

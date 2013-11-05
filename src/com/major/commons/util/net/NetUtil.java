@@ -1,4 +1,4 @@
-package com.major.util.net;
+package com.major.commons.util.net;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;

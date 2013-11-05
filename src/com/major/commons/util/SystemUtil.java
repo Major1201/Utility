@@ -1,4 +1,4 @@
-package com.major.util;
+package com.major.commons.util;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;

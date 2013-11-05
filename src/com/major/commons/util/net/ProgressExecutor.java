@@ -1,4 +1,4 @@
-package com.major.util.net;
+package com.major.commons.util.net;
 
 /**
  * User: Minjie

@@ -1,4 +1,4 @@
-package com.major.util;
+package com.major.commons.util;
 
 import bsh.EvalError;
 import bsh.Interpreter;
