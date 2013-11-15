@@ -1,6 +1,7 @@
 package com.major.commons.util;
 
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
+import org.apache.commons.codec.Charsets;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Base64InputStream;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -228,7 +229,7 @@ public class EncryptUtil {
      */
     public static String decodeBase64(String data) {
         if (Base64.isBase64(data)) {
-            return new String(Base64.decodeBase64(data));
+            return new String(Base64.decodeBase64(data), Charsets.UTF_8);
         } else {
             return null;
         }

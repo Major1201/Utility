@@ -14,6 +14,7 @@ import java.net.URLConnection;
  * Date: 13-10-31
  * Time: 下午5:44
  */
+@SuppressWarnings("UnusedDeclaration")
 public class NetUtil {
 
     private static final Logger LOGGER = LogManager.getLogger(NetUtil.class);
