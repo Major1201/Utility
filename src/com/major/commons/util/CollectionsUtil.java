@@ -1,9 +1,6 @@
 package com.major.commons.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: Minjie

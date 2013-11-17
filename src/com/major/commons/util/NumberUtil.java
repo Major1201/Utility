@@ -373,7 +373,7 @@ public class NumberUtil {
             if (c >= rank.length - 1)
                 break;
         }
-        return new DecimalFormat("0.##").format(size) + rank[c];
+        return new DecimalFormat("0.##").format(size) + " " + rank[c];
     }
 
     /**
