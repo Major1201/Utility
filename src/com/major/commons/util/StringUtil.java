@@ -76,6 +76,24 @@ public class StringUtil {
     }
 
     /**
+     * Return whether str in strList ignored cases.
+     * @param str source
+     * @param strList string list
+     * @return boolean
+     */
+    public static boolean containsIgnoreCase(String str, String... strList) {
+        boolean flag = false;
+        if (str != null)
+            for (String str1 : strList) {
+                if (str.equalsIgnoreCase(str1)) {
+                    flag = true;
+                    break;
+                }
+            }
+        return flag;
+    }
+
+    /**
      * To build a random string, may be a password.
      * @param length the length you want to build
      *               If allowDuplicate is false, the length is limited.{

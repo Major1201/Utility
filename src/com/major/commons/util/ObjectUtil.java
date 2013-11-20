@@ -7,6 +7,12 @@ package com.major.commons.util;
  */
 @SuppressWarnings("UnusedDeclaration")
 public class ObjectUtil {
+    /**
+     * Return whether object in object list.
+     * @param object source
+     * @param objects object list
+     * @return boolean
+     */
     @SafeVarargs
     public static <T> boolean in(T object, T... objects) {
         boolean flag = false;
