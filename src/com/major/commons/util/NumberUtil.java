@@ -4,6 +4,7 @@ import bsh.EvalError;
 import bsh.Interpreter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -361,19 +362,36 @@ public class NumberUtil {
      * @param size size in byte
      * @return suitable size with the unit
      */
-    public static String formatFileSize(double size) {
-        if (size < 0)
+    public static String[] formatFileSize(BigInteger size) {
+        if (size.compareTo(new BigInteger("0")) < 0)
             throw new IllegalArgumentException("Filesize < 0");
 
         String[] rank = {"B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};
         int c = 0;
-        while (size >= 1000) {
-            size = size / 1024;
+        BigDecimal bigDecimal = new BigDecimal(size);
+        while (bigDecimal.compareTo(new BigDecimal("1000")) >= 0) {
+            bigDecimal = bigDecimal.divide(new BigDecimal("1024"));
             c++;
             if (c >= rank.length - 1)
                 break;
         }
-        return new DecimalFormat("0.##").format(size) + " " + rank[c];
+
+        String result[] = new String[2];
+        result[0] = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+        result[1] = rank[c];
+        return result;
+    }
+
+    /**
+     * Compute the file size in Byte to a suitable unit.
+     * @param size size in byte
+     * @return suitable size with the unit
+     */
+    public static String[] formatFileSize(long size) {
+        if (size < 0)
+            throw new IllegalArgumentException("Filesize < 0");
+
+        return formatFileSize(new BigInteger(Long.toString(size)));
     }
 
     /**
